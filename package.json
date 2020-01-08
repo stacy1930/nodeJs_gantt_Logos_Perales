@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_gantt_logos_perales",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stacy1930/nodeJs_gantt_Logos_Perales.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stacy1930/nodeJs_gantt_Logos_Perales/issues"
+  },
+  "homepage": "https://github.com/stacy1930/nodeJs_gantt_Logos_Perales#readme"
+}
