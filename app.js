@@ -4,9 +4,11 @@ const express = require("express");
 const app = express();
 
 const http = require("http").createServer(app);
-const io = require("socker.io")(http);
+const io = require("socket.io")(http);
 
 const Gant = require(path.join(_dirname, "Gant", "gant.js"));
+
+app.use(express.static(path.join(__dirname, "Gant")));
 
 // Connexion a la bdd
 const mongo = require("mongodb");
