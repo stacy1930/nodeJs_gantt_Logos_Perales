@@ -6,7 +6,7 @@ const app = express();
 const http = require("http").createServer(app);
 const io = require("socker.io")(http);
 
-// const Gant = require(path.join(_dirname, "Gant", "gantBdd.js"));
+const Gant = require(path.join(_dirname, "Gant", "gant.js"));
 
 // Connexion a la bdd
 const mongo = require("mongodb");
@@ -26,4 +26,21 @@ mongoClient.connect(url, function(err, db) {
     if (err) throw err;
     // console.log(result.pseudo + " " + result.message);
   });
-});
+
+//   ServerEvent.on("gantt", function(data) {
+//     if (data) {
+//       var tab = data.split(":");
+
+//       var myobj = { pseudo: tab[0], message: tab[1] };
+//       console.log(myobj);
+//       dbo.collection("gantt").insertOne(myobj, function(err, res) {
+//         if (err) throw err;
+//         console.log("1 document inserted");
+//         ServerEvent.emit("gantt");
+//         // db.close();
+//       });
+//     }
+//   });
+// });
+
+http.listen(3001);
