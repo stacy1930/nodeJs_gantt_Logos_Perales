@@ -4,6 +4,7 @@ let title = "Aucun titre";
 let description = "Aucune description";
 socket.emit("connection", "a user connected");
 
+// *******************TITRE******************
 $("#addTitle").submit(function(e) {
   e.preventDefault();
   if ($("#title").val() == "") {
@@ -15,6 +16,8 @@ $("#addTitle").submit(function(e) {
   $("#title").val("");
   return false;
 });
+
+// *******************DESCRIPTION******************
 
 $("#addDesc").submit(function(e) {
   e.preventDefault();
@@ -28,12 +31,46 @@ $("#addDesc").submit(function(e) {
   return false;
 });
 
-//A FINIR STACY
+// *******************GROUPTASK******************
 $("#addGroupTask").submit(function(e) {
   e.preventDefault();
   if ($("#gtN").val() == "") {
     groupTaskName = "Aucun nom";
   } else {
     groupTaskName = $("#gtN");
+  }
+
+  if ($("#gtS").val() == "") {
+    groupTaskStart = "";
+  } else {
+    groupTaskStart = $("gtS");
+  }
+
+  if ($("#gtE").val() == "") {
+    groupTaskEnd = "";
+  } else {
+    groupTaskEnd = $("gtE");
+  }
+});
+
+// *******************RESSOURCES******************
+$("#addResource").submit(function(e) {
+  e.preventDefault();
+  if ($("#rN").val() == "") {
+    resourceName = "Aucun nom";
+  } else {
+    groupTaskName = $("#rN");
+  }
+
+  if ($("#rC").val() == "") {
+    resourceCost = "";
+  } else {
+    resourceCost = $("rC");
+  }
+
+  if ($("#rT").val() == "") {
+    resourceType = "";
+  } else {
+    resourceType = $("rT");
   }
 });
