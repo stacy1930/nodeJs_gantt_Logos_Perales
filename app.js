@@ -27,7 +27,7 @@ mongoClient.connect(url, function(err, db) {
 
   dbo.collection("gantt").find({}, function(err, result) {
     if (err) throw err;
-    // console.log(result.pseudo + " " + result.message);
+    console.log("pas ok");
   });
 
   //   ServerEvent.on("gantt", function(data) {
