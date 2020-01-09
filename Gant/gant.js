@@ -26,7 +26,7 @@ $("#addDesc").submit(function(e) {
   } else {
     description = $("#description").val();
   }
-
+  socket.emit("description", description);
   $("#description").val("");
   return false;
 });
@@ -51,6 +51,10 @@ $("#addGroupTask").submit(function(e) {
   } else {
     groupTaskEnd = $("gtE");
   }
+
+  socket.emit("gtN", gtN);
+  $("#gtN").val("");
+  return false;
 });
 
 // *******************RESSOURCES******************
