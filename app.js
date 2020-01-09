@@ -50,4 +50,6 @@ io.on("connection", gant => {
   gant.on("connection", data => console.log(data));
 });
 
+io.on("title", data => console.log(data));
+
 http.listen(3001);

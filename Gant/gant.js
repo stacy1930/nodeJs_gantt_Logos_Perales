@@ -11,7 +11,7 @@ $("#addTitle").submit(function(e) {
   } else {
     title = $("#title").val();
   }
-
+  socket.emit("title", title);
   $("#title").val("");
   return false;
 });
