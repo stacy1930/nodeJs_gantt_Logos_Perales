@@ -7,7 +7,7 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const path = require("path");
 
-const Gant = require(path.join(__dirname, "Gant", "gant.js"));
+// const Gant = require(path.join(__dirname, "Gant", "gant.js"));
 
 app.use(express.static(path.join(__dirname, "Gant")));
 
@@ -44,6 +44,10 @@ mongoClient.connect(url, function(err, db) {
   //       });
   //     }
   //   });
+});
+
+io.on("connection", gant => {
+  gant.on("connection", data => console.log(data));
 });
 
 http.listen(3001);

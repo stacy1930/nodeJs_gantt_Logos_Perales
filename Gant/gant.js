@@ -2,6 +2,7 @@
 const socket = io();
 let title = "Aucun titre";
 let description = "Aucune description";
+socket.emit("connection", "a user connected");
 
 $("#addTitle").submit(function(e) {
   e.preventDefault();
