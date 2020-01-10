@@ -5,31 +5,31 @@ let description = "Aucune description";
 socket.emit("connection", "a user connected");
 
 // *******************TITRE******************
-$("#addTitle").submit(function(e) {
-  e.preventDefault();
-  if ($("#title").val() == "") {
-    title = "Aucun titre";
-  } else {
-    title = $("#title").val();
-  }
-  socket.emit("title", title);
-  $("#title").val("");
-  return false;
-});
+// $("#addTitle").submit(function(e) {
+//   e.preventDefault();
+//   if ($("#title").val() == "") {
+//     title = "Aucun titre";
+//   } else {
+//     title = $("#title").val();
+//   }
+//   socket.emit("title", title);
+//   $("#title").val("");
+//   return false;
+// });
 
 // *******************DESCRIPTION******************
 
-$("#addDesc").submit(function(e) {
-  e.preventDefault();
-  if ($("#description").val() == "") {
-    description = "Aucune description";
-  } else {
-    description = $("#description").val();
-  }
-  socket.emit("description", description);
-  $("#description").val("");
-  return false;
-});
+// $("#addDesc").submit(function(e) {
+//   e.preventDefault();
+//   if ($("#description").val() == "") {
+//     description = "Aucune description";
+//   } else {
+//     description = $("#description").val();
+//   }
+//   socket.emit("description", description);
+//   $("#description").val("");
+//   return false;
+// });
 
 // *******************GROUPTASK******************
 // $("#addGroupTask").submit(function(e) {
@@ -62,31 +62,31 @@ $("#addDesc").submit(function(e) {
 // });
 
 // VERSION PROPRE
-$("#addGroupTask").submit(function(e) {
-  e.preventDefault();
+// $("#addGroupTask").submit(function(e) {
+//   e.preventDefault();
 
-  switch ("") {
-    case $("#gtN").val():
-      $("#gtN").val() = "Aucun nom";
-      break;
+//   switch ("") {
+//     case $("#gtN").val():
+//       $("#gtN").val() = "Aucun nom";
+//       break;
 
-    case $("#gtS").val():
-      $("#gtS").val() = "Aucun nom";
-      break;
+//     case $("#gtS").val():
+//       $("#gtS").val() = "Aucun nom";
+//       break;
 
-    case $("#gtE").val():
-      $("#gtE").val() = "Aucun nom";
-      break;
-  }
+//     case $("#gtE").val():
+//       $("#gtE").val() = "Aucun nom";
+//       break;
+//   }
 
-  socket.emit("gtN", $("#gtN"));
-  $("#gtN").val("");
-  socket.emit("gtE", $("#gtE"));
-  $("#gtE").val("");
-  socket.emit("gtS", $("#gtS"));
-  $("#gtS").val("");
-  return false;
-});
+//   socket.emit("gtN", $("#gtN"));
+//   $("#gtN").val("");
+//   socket.emit("gtE", $("#gtE"));
+//   $("#gtE").val("");
+//   socket.emit("gtS", $("#gtS"));
+//   $("#gtS").val("");
+//   return false;
+// });
 
 // *******************RESSOURCES******************
 // $("#addResource").submit(function(e) {
@@ -109,47 +109,48 @@ $("#addGroupTask").submit(function(e) {
 //     resourceType = $("rT");
 //   }
 // });
-$("#addResource").submit(function(e) {
-  e.preventDefault();
 
-  switch ("") {
-    case $("#rN").val():
-      $("#rN").val() = "Aucun nom";
-      break;
+// $("#addResource").submit(function(e) {
+//   e.preventDefault();
 
-    case $("#rC").val():
-      $("#gtS").val() = "Aucun nom";
-      break;
+//   switch ("") {
+//     case $("#rN").val():
+//       $("#rN").val() = "Aucun nom";
+//       break;
 
-    case $("#rT").val():
-      $("#rT").val() = "Aucun nom";
-      break;
-  }
+//     case $("#rC").val():
+//       $("#gtS").val() = "Aucun nom";
+//       break;
 
-  socket.emit("rN", $("#rN"));
-  $("#rN").val("");
-  socket.emit("rE", $("#rE"));
-  $("#rE").val("");
-  socket.emit("rT", $("#rT"));
-  $("#rT").val("");
-  return false;
-});
+//     case $("#rT").val():
+//       $("#rT").val() = "Aucun nom";
+//       break;
+//   }
+
+//   socket.emit("rN", $("#rN"));
+//   $("#rN").val("");
+//   socket.emit("rE", $("#rE"));
+//   $("#rE").val("");
+//   socket.emit("rT", $("#rT"));
+//   $("#rT").val("");
+//   return false;
+// });
 
 // *******************MILESTONES******************
 
-$("#addMilestones").submit(function(e) {
-  e.preventDefault();
-  if ($("#mN").val() == "") {
-    $("#mN").val() = "Aucun nom";
-  }
+// $("#addMilestones").submit(function(e) {
+//   e.preventDefault();
+//   if ($("#mN").val() == "") {
+//     $("#mN").val() = "Aucun nom";
+//   }
 
-  if ($("#mD").val() == "") {
-    $("#mD").val() = "Aucune date";
-  }
+//   if ($("#mD").val() == "") {
+//     $("#mD").val() = "Aucune date";
+//   }
 
-  socket.emit("mN", $("#mN").val());
-  $("#mN").val("");
-  socket.emit("mD", $("#mD").val());
-  $("#mD").val("");
-  return false;
-});
+//   socket.emit("mN", $("#mN").val());
+//   $("#mN").val("");
+//   socket.emit("mD", $("#mD").val());
+//   $("#mD").val("");
+//   return false;
+// });
