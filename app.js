@@ -99,6 +99,12 @@ mongoClient.connect(url, function(err, db) {
 io.on("connection", client => {
   client.on("connection", data => console.log(data));
   client.on("title", data => console.log(data));
+  client.on("tN", data => console.log(data));
+  client.on("tD", data => console.log(data));
+  client.on("tS", data => console.log(data));
+  client.on("tE", data => console.log(data));
+  client.on("tPP", data => console.log(data));
+  client.on("tC", data => console.log(data));
 });
 
 http.listen(3001);

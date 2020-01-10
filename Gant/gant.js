@@ -155,3 +155,48 @@ $("#addTitle").submit(function(e) {
 //   $("#mD").val("");
 //   return false;
 // });
+
+// *******************RESSOURCES******************
+$("#addTask").submit(function(e) {
+  e.preventDefault();
+
+  switch ("") {
+    case $("#tN").val():
+      $("#tN").val() = "Aucun nom";
+      break;
+
+    case $("#tD").val():
+      $("#tD").val() = "Aucun nom";
+      break;
+
+    case $("#tS").val():
+      $("#tS").val() = "Aucun nom";
+      break;
+
+    case $("#tE").val():
+      $("#tE").val() = "Aucun nom";
+      break;
+
+    case $("#tPP").val():
+      $("#tPP").val() = "Aucun nom";
+      break;
+
+    case $("#tC").val():
+      $("#tC").val() = "Aucun nom";
+      break;
+  }
+
+  socket.emit("tN", $("#tN").val());
+  $("#tN").val("");
+  socket.emit("tD", $("#tD").val());
+  $("#tD").val("");
+  socket.emit("tS", $("#tS").val());
+  $("#tS").val("");
+  socket.emit("tE", $("#tE").val());
+  $("#tE").val("");
+  socket.emit("tPP", $("#tPP").val());
+  $("#tPP").val("");
+  socket.emit("tC", $("#tC").val());
+  $("#tC").val("");
+  return false;
+});
