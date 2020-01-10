@@ -63,7 +63,7 @@ const mongo = require("mongodb");
 const mongoClient = mongo.MongoClient;
 const url = "mongodb://localhost:27017/bddGantt";
 
-//Connexion a la bdd bddGant et creation de la collection
+// //Connexion a la bdd bddGant et creation de la collection
 mongoClient.connect(url, function(err, db) {
   if (err) throw err;
   let dbo = db.db("bddGantt");
@@ -77,7 +77,7 @@ mongoClient.connect(url, function(err, db) {
     console.log("pas ok");
   });
 
-  // //Connection
+  //  Connection
   mongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("bddGantt");
@@ -96,10 +96,9 @@ mongoClient.connect(url, function(err, db) {
   });
 });
 
-io.on("connection", gant => {
-  gant.on("connection", data => console.log(data));
+io.on("connection", client => {
+  client.on("connection", data => console.log(data));
+  client.on("title", data => console.log(data));
 });
-
-io.on("title", data => console.log(data));
 
 http.listen(3001);

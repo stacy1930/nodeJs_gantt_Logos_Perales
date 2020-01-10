@@ -2,18 +2,19 @@
 const socket = io();
 let title = "Aucun titre";
 let description = "Aucune description";
+
 socket.emit("connection", "a user connected");
 
 // *******************TITRE******************
 $("#addTitle").submit(function(e) {
   e.preventDefault();
-  if ($("#title").val() == "") {
-    title = "Aucun titre";
-  } else {
-    title = $("#title").val();
-  }
-  socket.emit("title", title);
-  $("#title").val("");
+  // if ($("#title").val() == "") {
+  //   title = "Aucun titre";
+  // } else {
+  //   title = $("#title").val();
+  // }
+  socket.emit("title", $("#title").val());
+  // $("#title").val("");
   return false;
 });
 
