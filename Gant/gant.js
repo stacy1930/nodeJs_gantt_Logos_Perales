@@ -5,17 +5,17 @@ let description = "Aucune description";
 socket.emit("connection", "a user connected");
 
 // *******************TITRE******************
-// $("#addTitle").submit(function(e) {
-//   e.preventDefault();
-//   if ($("#title").val() == "") {
-//     title = "Aucun titre";
-//   } else {
-//     title = $("#title").val();
-//   }
-//   socket.emit("title", title);
-//   $("#title").val("");
-//   return false;
-// });
+$("#addTitle").submit(function(e) {
+  e.preventDefault();
+  if ($("#title").val() == "") {
+    title = "Aucun titre";
+  } else {
+    title = $("#title").val();
+  }
+  socket.emit("title", title);
+  $("#title").val("");
+  return false;
+});
 
 // *******************DESCRIPTION******************
 
