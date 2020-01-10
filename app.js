@@ -99,6 +99,12 @@ mongoClient.connect(url, function(err, db) {
 io.on("connection", client => {
   client.on("connection", data => console.log(data));
   client.on("title", data => console.log(data));
+  client.on("taskName", data => console.log(data));
+  client.on("taskDesc", data => console.log(data));
+  client.on("taskStart", data => console.log(data));
+  client.on("taskEnd", data => console.log(data));
+  client.on("task%", data => console.log(data));
+  client.on("taskColor", data => console.log(data));
 });
 
 http.listen(3001);
