@@ -80,6 +80,7 @@ mongoClient.connect(url, function(err, db) {
   mongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("bddGantt");
+
     // if (data) {
     //   // var tab = data.split(":");
     //   // var myobj = { pseudo: tab[0], message: tab[1] };
