@@ -18,6 +18,17 @@ $("#addTitle").submit(function(e) {
   return false;
 });
 
+$("#addTask").submit(function(e) {
+  e.preventDefault();
+  socket.emit("taskName", $("#tN").val());
+  socket.emit("taskDesc", $("#tD").val());
+  socket.emit("taskStart", $("#tS").val());
+  socket.emit("taskEnd", $("#tE").val());
+  socket.emit("task%", $("#tPP").val());
+  socket.emit("taskColor", $("#tC").val());
+  return false;
+});
+
 // *******************DESCRIPTION******************
 
 // $("#addDesc").submit(function(e) {
