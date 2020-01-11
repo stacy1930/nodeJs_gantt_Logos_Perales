@@ -107,6 +107,38 @@ io.on("connection", client => {
         client.emit("task", task);
       });
   });
+
+  //************************************************************************************************************* */
+  //************************************************************************************************************* */
+  //************************************************************************************************************* */
+  //***************************** */ CONNEXION AU SERVEUR CENTRAL *********************************************** */
+  //************************************************************************************************************* */
+  //************************************************************************************************************* */
+  //************************************************************************************************************* */
+
+  const socketClient = require("socket.io-client");
+  let clientTest = socketClient.connect("http://51.15.137.122:18000/", {
+    reconnect: true
+  });
+
+  console.log("server central connected");
+  //********DEMANDE D'AIDE******** */
+  //Pour demander de l'aide
+  clientTest.emit("needHelp");
+  //Ecouter la reponse de demande d'aide
+  clientTest.on("info", data => console.log(data));
+
+  //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
+  // clientTest.emit("groupes");
+  // clientTest.on("projectUpdated", data => console.log(data));
+
+  //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
+  // clientTest.emit("getServices");
+  // clientTest.on("servicies", data => console.log(data));
+
+  //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
+  // clientTest.emit("deleteService");
+  //clientTest.on("groupe", data => console.log(data));
 });
 
 http.listen(3001);
