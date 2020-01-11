@@ -19,7 +19,7 @@ $("#addTitle").submit(function(e) {
   return false;
 });
 
-// TASK
+// *******************TASK******************
 
 $("#addTask").submit(function(e) {
   e.preventDefault();
@@ -67,6 +67,10 @@ $("#addTask").submit(function(e) {
 
   return false;
 });
+
+// socket.on("task", data => {
+//   $("#tasks").append($("<li>").text(data));
+// });
 
 // *******************DESCRIPTION******************
 

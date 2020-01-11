@@ -78,16 +78,36 @@ mongoClient.connect(url, function(err, db) {
   });
 
   //  Connection
-  mongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("bddGantt");
-  });
 });
 
 io.on("connection", client => {
-  client.on("connection", data => console.log(data));
-  client.on("title", data => console.log(data));
-  client.on("addTask", data => console.log(data));
+  client.on("connection", data => console.log(data)); // Un utilisateur visite la page
+
+  // Envoi d'une tache en bdd
+  client.on("addTask", data => {
+    console.log(data);
+    mongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      let dbo = db.db("bddGantt");
+      dbo.collection("task").insertOne(data, function(err, res) {
+        if (err) throw err;
+        console.log("document ajouté");
+      });
+    });
+  });
+  // fin Envoie de tache en bdd
+
+  // mongoClient.connect(url, function(err, db) {
+  //   if (err) throw err;
+  //   let dbo = db.db("bddGantt");
+  //   dbo
+  //     .collection("task")
+  //     .find()
+  //     .forEach(function(err, task) {
+  //       if (err) throw err;
+  //       client.emit("task", task);
+  //     });
+  // });
 });
 
 http.listen(3001);
