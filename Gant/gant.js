@@ -52,8 +52,8 @@ $("#addTask").submit(function(e) {
 
   task.name = $("#tN").val();
   task.desc = $("#tD").val();
-  task.start = $("#tS").val();
-  task.end = $("#tE").val();
+  task.start = new Date($("#tS").val()).getTime() / 1000; // Conversion de la date en time stamp
+  task.end = new Date($("#tE").val()).getTime() / 1000; // idem
   task.pp = $("#tPP").val();
   task.color = $("#tC").val();
   socket.emit("addTask", task);
