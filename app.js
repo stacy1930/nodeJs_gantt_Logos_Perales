@@ -7,52 +7,52 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 const path = require("path");
 
-// const jsonGant = {
-//   nameService: "Demo",
-//   projects: [
-//     {
-//       name: "projet de test",
-//       desc: "Description du projet, blablabla...",
-//       daysOff: {
-//         Mo: true,
-//         Tu: true,
-//         We: true,
-//         Th: true,
-//         Fr: true,
-//         Sa: false,
-//         Su: false
-//       },
-//       workingHours: { start: moment().hour(), end: moment().hour() },
-//       task: [
-//         {
-//           id: 0,
-//           name: "tache 1",
-//           desc: "toto",
-//           start: 1491680626329,
-//           end: 1491684607029,
-//           percentageProgress: 50,
-//           color: "#fc0202",
-//           linkedTask: [],
-//           ressources: []
-//         },
-//         {
-//           id: 1,
-//           name: "tache 2",
-//           desc: "toto",
-//           start: 1491680626327,
-//           end: 1491684607022,
-//           percentageProgress: 10,
-//           color: "#fc0350",
-//           linkedTask: [],
-//           ressources: []
-//         }
-//       ],
-//       groupTask: [{ name: "optional", start: Date.now(), end: Date.now() }],
-//       resources: [{ name: "Jérémy", cost: 500, type: "humain" }],
-//       milestones: [{ name: "jalon °1", date: Date.now() }]
-//     }
-//   ]
-// };
+const jsonGant = {
+  nameService: "Perales_Logos",
+  projects: [
+    {
+      name: "projet de test",
+      desc: "Description du projet, blablabla...",
+      daysOff: {
+        Mo: true,
+        Tu: true,
+        We: true,
+        Th: true,
+        Fr: true,
+        Sa: false,
+        Su: false
+      },
+      workingHours: { start: Date.now, end: Date.now },
+      task: [
+        {
+          id: 0,
+          name: "tache 1",
+          desc: "toto",
+          start: 1491680626329,
+          end: 1491684607029,
+          percentageProgress: 50,
+          color: "#fc0202",
+          linkedTask: [],
+          ressources: []
+        },
+        {
+          id: 1,
+          name: "tache 2",
+          desc: "toto",
+          start: 1491680626327,
+          end: 1491684607022,
+          percentageProgress: 10,
+          color: "#fc0350",
+          linkedTask: [],
+          ressources: []
+        }
+      ],
+      groupTask: [{ name: "optional", start: Date.now(), end: Date.now() }],
+      resources: [{ name: "Jérémy", cost: 500, type: "humain" }],
+      milestones: [{ name: "jalon °1", date: Date.now() }]
+    }
+  ]
+};
 
 // const Gant = require(path.join(__dirname, "Gant", "gant.js"));
 
@@ -81,30 +81,13 @@ mongoClient.connect(url, function(err, db) {
   mongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db("bddGantt");
-
-    // if (data) {
-    //   // var tab = data.split(":");
-    //   // var myobj = { pseudo: tab[0], message: tab[1] };
-    //   console.log(myobj);
-    //   dbo.collection("message").insertOne(myobj, function(err, res) {
-    //     if (err) throw err;
-    //     console.log("1 document inserted");
-    //     ServerEvent.emit("message");
-    //     // db.close();
-    //   });
-    // }
   });
 });
 
 io.on("connection", client => {
   client.on("connection", data => console.log(data));
   client.on("title", data => console.log(data));
-  client.on("tN", data => console.log(data));
-  client.on("tD", data => console.log(data));
-  client.on("tS", data => console.log(data));
-  client.on("tE", data => console.log(data));
-  client.on("tPP", data => console.log(data));
-  client.on("tC", data => console.log(data));
+  client.on("addTask", data => console.log(data));
 });
 
 http.listen(3001);

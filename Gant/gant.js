@@ -2,6 +2,7 @@
 const socket = io();
 let title = "Aucun titre";
 let description = "Aucune description";
+let task = new Object();
 
 socket.emit("connection", "a user connected");
 
@@ -49,18 +50,21 @@ $("#addTask").submit(function(e) {
       break;
   }
 
-  socket.emit("tN", $("#tN").val());
+  task.name = $("#tN").val();
+  task.desc = $("#tD").val();
+  task.start = $("#tS").val();
+  task.end = $("#tE").val();
+  task.pp = $("#tPP").val();
+  task.color = $("#tC").val();
+  socket.emit("addTask", task);
+
   $("#tN").val("");
-  socket.emit("tD", $("#tD").val());
   $("#tD").val("");
-  socket.emit("tS", $("#tS").val());
   $("#tS").val("");
-  socket.emit("tE", $("#tE").val());
   $("#tE").val("");
-  socket.emit("tPP", $("#tPP").val());
   $("#tPP").val("");
-  socket.emit("tC", $("#tC").val());
   $("#tC").val("");
+
   return false;
 });
 
