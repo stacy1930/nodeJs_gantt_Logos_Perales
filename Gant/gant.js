@@ -68,9 +68,10 @@ $("#addTask").submit(function(e) {
   return false;
 });
 
-// socket.on("task", data => {
-//   $("#tasks").append($("<li>").text(data));
-// });
+socket.on("task", data => {
+  console.log(data);
+  $("#tasks").append($("<li>").text(data.name));
+});
 
 // *******************DESCRIPTION******************
 

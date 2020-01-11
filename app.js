@@ -97,17 +97,16 @@ io.on("connection", client => {
   });
   // fin Envoie de tache en bdd
 
-  // mongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   let dbo = db.db("bddGantt");
-  //   dbo
-  //     .collection("task")
-  //     .find()
-  //     .forEach(function(err, task) {
-  //       if (err) throw err;
-  //       client.emit("task", task);
-  //     });
-  // });
+  mongoClient.connect(url, function(err, db) {
+    if (err) console.log("ICI");
+    let dbo = db.db("bddGantt");
+    dbo
+      .collection("task")
+      .find({})
+      .forEach(function(task) {
+        client.emit("task", task);
+      });
+  });
 });
 
 http.listen(3001);
