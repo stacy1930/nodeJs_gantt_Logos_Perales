@@ -152,7 +152,15 @@ io.on("connection", client => {
   clientTest.on("projectUpdated", dataTest => {
     dataTest.forEach(element => {
       for (let i = 0; i < element.projects[0].task.length; i++) {
-        io.emit(
+        let recupGantt = {
+          name: element.projects[0].task[i].name,
+          desc: element.projects[0].task[i].desc,
+          start: element.projects[0].task[i].start,
+          end: element.projects[0].task[i].end,
+          percentageProgress: element.projects[0].task[i].percentageProgress,
+          color: element.projects[0].task[i].color
+        };
+        client.emit(
           "taskTestRecup",
           element.projects[0].task[i].name +
             " : " +
@@ -162,7 +170,9 @@ io.on("connection", client => {
             " / " +
             element.projects[0].task[i].end +
             ", " +
-            element.projects[0].task[i].percentageProgress
+            element.projects[0].task[i].percentageProgress +
+            ", " +
+            element.projects[0].task[i].color
         );
       }
     });
