@@ -141,18 +141,23 @@ io.on("connection", client => {
 
   // Envoyer le service au centrale
   clientTest.emit("sendUpdate", jsonGant);
-  clientTest.on("errorOnProjectUpdate", data => console.log(data));
+  // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
-  // clientTest.on("projectUpdated", data => console.log(data));
+  clientTest.on("projectUpdated", data => console.log(data));
 
   //********ECOUTER ET VOIR SI UNE ERREUR A EU LIEU LORS DE LA MAJ******** */
   // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   clientTest.emit("getServices");
+<<<<<<< HEAD
   clientTest.on("servicies", data => console.log(data[2].projects[0].task));
   //clientTest.on("servicies", data => console.log(data));
+=======
+  clientTest.on("servicies", data => console.log(data[0].projects[0].task));
+
+>>>>>>> 01f3ea4a0c20f5774946fc546ff2d46eedd31d0a
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
 });
