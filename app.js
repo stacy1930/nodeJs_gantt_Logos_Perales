@@ -83,7 +83,7 @@ mongoClient.connect(url, function(err, db) {
 io.on("connection", client => {
   client.on("connection", data => console.log(data)); // Un utilisateur visite la page
 
-  // Envoi d'une tache en bdd
+  // Envoi d'une tache en bdd INSERTONE
   client.on("addTask", data => {
     console.log(data);
     mongoClient.connect(url, function(err, db) {
@@ -97,6 +97,7 @@ io.on("connection", client => {
   });
   // fin Envoie de tache en bdd
 
+<<<<<<< HEAD
   client.on("idToDelete", data => {
     mongoClient.connect(url, function(err, db) {
       if (err) console.log("SUPPRESSION");
@@ -111,6 +112,9 @@ io.on("connection", client => {
     });
   });
 
+=======
+  //RECUPERA5ION DES TACHES FIND
+>>>>>>> 944e2340f029eb16989dd1d11058346e618d57a2
   mongoClient.connect(url, function(err, db) {
     if (err) console.log("ICI");
     let dbo = db.db("bddGantt");
@@ -121,6 +125,55 @@ io.on("connection", client => {
         client.emit("task", task);
       });
   });
+
+  //SUPPRESSION D'UNE TACHE
+  // mongoClient.connect(url, function(err, db) {
+  //   if (err) throw err;
+  //   let dbo = db.db("bddGantt");
+  //   db.collection("task").deleteOne(data, function(err, res) {
+  //     if (err) throw err;
+  //     console.log("Document supprimé !");
+  //   });
+  // });
+
+  //UPDATE D'UNE TACHE
+  // mongoClient.connect(url, function(err, db) {
+  //   if (err) throw err;
+  //   let dbo = db.db("bddGantt");
+  //   dbo.collection("task").updateOne(data, newValue, function(err, res) {
+  //     if (err) throw err;
+  //     console.log("Document modifié !");
+  //   });
+  // });
+
+  //************************************************************************************************************* */
+  //***************************** */ CONNEXION AU SERVEUR CENTRAL *********************************************** */
+  //************************************************************************************************************* */
+
+  const socketClient = require("socket.io-client");
+  let clientTest = socketClient.connect("http://51.15.137.122:18000/", {
+    reconnect: true
+  });
+
+  console.log("server central connected");
+  //********DEMANDE D'AIDE******** */
+  //Pour demander de l'aide
+  clientTest.emit("needHelp");
+  //Ecouter la reponse de demande d'aide
+  clientTest.on("info", data => console.log(data));
+
+  //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
+  // clientTest.on("projectUpdated", data => console.log(data));
+
+  //********ECOUTER ET VOIR SI UNE ERREUR A EU LIEU LORS DE LA MAJ******** */
+  // clientTest.on("errorOnProjectUpdate", data => console.log(data));
+
+  //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
+  // clientTest.emit("getServices");
+  // clientTest.on("servicies", data => console.log(data));
+
+  //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
+  // clientTest.emit("deleteService");
 });
 
 http.listen(3001);
