@@ -152,8 +152,8 @@ io.on("connection", client => {
   // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
-  // clientTest.emit("getServices");
-  // clientTest.on("servicies", data => console.log(data));
+  clientTest.emit("getServices");
+  clientTest.on("servicies", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
