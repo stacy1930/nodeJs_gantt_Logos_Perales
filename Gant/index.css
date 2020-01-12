@@ -1,10 +1,23 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
 form {
-  margin-top: 4%;
-  margin-bottom: 4%;
+  width: 80%;
+  margin: auto;
 }
 
 input {
   width: 100%;
+}
+
+input[type="color"],
+input[type="date"],
+input[type="range"] {
+  width: 12%;
 }
 
 input[type="text"] {
@@ -16,4 +29,30 @@ input[type="text"] {
 
 input[type="text"]:focus {
   border: 3px solid #7de9f9;
+}
+
+button {
+  background-color: #7ac8d4;
+  border-radius: 10px;
+  border: 1px solid #7ac8d4;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 4px;
+  cursor: pointer;
+}
+
+legend {
+  background-color: rgba(122, 200, 212, 0.5);
+  color: #fff;
+  padding: 3px 6px;
+}
+
+fieldset {
+  border: 2px solid rgba(122, 200, 212, 0.5);
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
