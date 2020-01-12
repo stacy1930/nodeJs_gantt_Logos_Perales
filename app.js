@@ -129,8 +129,10 @@ io.on("connection", client => {
   clientTest.on("info", data => console.log(data));
 
   //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
-  // clientTest.emit("groupes");
   // clientTest.on("projectUpdated", data => console.log(data));
+
+  //********ECOUTER ET VOIR SI UNE ERREUR A EU LIEU LORS DE LA MAJ******** */
+  // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("getServices");
@@ -138,7 +140,6 @@ io.on("connection", client => {
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
-  //clientTest.on("groupe", data => console.log(data));
 });
 
 http.listen(3001);

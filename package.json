@@ -19,6 +19,7 @@
   "homepage": "https://github.com/stacy1930/nodeJs_gantt_Logos_Perales#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "frappe-gantt": "^0.3.0",
     "jquery": "^3.4.1",
     "mongodb": "^3.4.1",
     "mongoose": "^5.8.5",
