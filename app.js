@@ -97,7 +97,6 @@ io.on("connection", client => {
   });
   // fin Envoie de tache en bdd
 
-<<<<<<< HEAD
   client.on("idToDelete", data => {
     mongoClient.connect(url, function(err, db) {
       if (err) console.log("SUPPRESSION");
@@ -112,9 +111,6 @@ io.on("connection", client => {
     });
   });
 
-=======
-  //RECUPERA5ION DES TACHES FIND
->>>>>>> 944e2340f029eb16989dd1d11058346e618d57a2
   mongoClient.connect(url, function(err, db) {
     if (err) console.log("ICI");
     let dbo = db.db("bddGantt");
