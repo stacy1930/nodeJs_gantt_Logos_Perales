@@ -1,9 +1,19 @@
-.container {
-  text-align: center;
-  background-color: red;
+form {
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 
-form {
-  margin-top: 2%;
-  margin-bottom: 2%;
+input {
+  width: 100%;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+  border: 3px solid #7de9f9;
 }
