@@ -83,7 +83,7 @@ mongoClient.connect(url, function(err, db) {
 io.on("connection", client => {
   client.on("connection", data => console.log(data)); // Un utilisateur visite la page
 
-  // Envoi d'une tache en bdd
+  // Envoi d'une tache en bdd INSERTONE
   client.on("addTask", data => {
     console.log(data);
     mongoClient.connect(url, function(err, db) {
@@ -97,6 +97,7 @@ io.on("connection", client => {
   });
   // fin Envoie de tache en bdd
 
+  //RECUPERA5ION DES TACHES FIND
   mongoClient.connect(url, function(err, db) {
     if (err) console.log("ICI");
     let dbo = db.db("bddGantt");
@@ -108,12 +109,28 @@ io.on("connection", client => {
       });
   });
 
-  //************************************************************************************************************* */
-  //************************************************************************************************************* */
+  //SUPPRESSION D'UNE TACHE
+  // mongoClient.connect(url, function(err, db) {
+  //   if (err) throw err;
+  //   let dbo = db.db("bddGantt");
+  //   db.collection("task").deleteOne(data, function(err, res) {
+  //     if (err) throw err;
+  //     console.log("Document supprimé !");
+  //   });
+  // });
+
+  //UPDATE D'UNE TACHE
+  // mongoClient.connect(url, function(err, db) {
+  //   if (err) throw err;
+  //   let dbo = db.db("bddGantt");
+  //   dbo.collection("task").updateOne(data, newValue, function(err, res) {
+  //     if (err) throw err;
+  //     console.log("Document modifié !");
+  //   });
+  // });
+
   //************************************************************************************************************* */
   //***************************** */ CONNEXION AU SERVEUR CENTRAL *********************************************** */
-  //************************************************************************************************************* */
-  //************************************************************************************************************* */
   //************************************************************************************************************* */
 
   const socketClient = require("socket.io-client");
