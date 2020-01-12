@@ -22,14 +22,12 @@
       <h1>Bienvenue sur ce projet de diagramme de Gant en Node.JS</h1>
     </header>
 
-    <ul id="tasks"></ul>
-
-    <form autocomplete="off" id="addTitle" action="">
+    <!-- <form autocomplete="off" id="addTitle" action="">
       <label>Titre : </label><input id="title" type="text" />
       <button>
         Modifier
       </button>
-    </form>
+    </form> -->
 
     <form autocomplete="off" id="addTask">
       <fieldset>
@@ -41,7 +39,23 @@
         <label for="tPP">Pourcentage de complétion</label
         ><input type="range" min="0" max="100" id="tPP" />
         <label for="tC">Couleur : </label><input type="color" id="tC" />
-        <button>AJouter</button>
+        <button>Ajouter</button>
+      </fieldset>
+    </form>
+
+    <form id="tasks"></form>
+
+    <form id="suppTask">
+      <fieldset id="suppField">
+        <legend>Suprrimer une tache</legend>
+        <button>suprimmer</button>
+      </fieldset>
+    </form>
+
+    <form id="modTask">
+      <fieldset id="modField">
+        <legend>Modifier une tache</legend>
+        <button>Modifier</button>
       </fieldset>
     </form>
     <!-- <form autocomplete="off" id="addDesc">

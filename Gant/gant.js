@@ -68,9 +68,148 @@ $("#addTask").submit(function(e) {
   return false;
 });
 
+$("#suppTask").submit(function(e) {
+  e.preventDefault();
+  let idToDelete = $("input[name='suppTask']:checked").val();
+  socket.emit("idToDelete", idToDelete);
+});
+
+$("modTask").submit(function(e) {
+  e.preventDefault();
+  let idToMod = $("input[name='modTask']:checked").val();
+  socket.emit("idToMod", idToMod);
+});
+
 socket.on("task", data => {
   console.log(data);
-  $("#tasks").append($("<li>").text(data.name));
+  let startTS = data.start * 1000;
+  let startDate = new Date(startTS);
+  let startDay = ("0" + startDate.getDate()).slice(-2);
+  let startMonth = ("0" + (startDate.getMonth() + 1)).slice(-2);
+  let startYear = startDate.getFullYear();
+
+  let endTS = data.end * 1000;
+  let endDate = new Date(endTS);
+  let endDay = ("0" + endDate.getDate()).slice(-2);
+  let endMonth = ("0" + (endDate.getMonth() + 1)).slice(-2);
+  let endYear = endDate.getFullYear();
+
+  $("#suppField").prepend(
+    '<input type="radio" name="modTask" value="' +
+      data._id +
+      '"><span style="color:' +
+      data.color +
+      '">Nom : ' +
+      data.name +
+      " || Description : " +
+      data.desc +
+      " || Start : " +
+      startDay +
+      "-" +
+      startMonth +
+      "-" +
+      startYear +
+      " || End : " +
+      endDay +
+      "-" +
+      endMonth +
+      "-" +
+      endYear +
+      " || Completion : " +
+      data.pp +
+      "%</span><br>"
+  );
+
+  $("#modField").prepend(
+    '<input type="radio" name="suppTask" value="' +
+      data._id +
+      '"><span style="color:' +
+      data.color +
+      '">Nom : ' +
+      data.name +
+      " || Description : " +
+      data.desc +
+      " || Start : " +
+      startDay +
+      "-" +
+      startMonth +
+      "-" +
+      startYear +
+      " || End : " +
+      endDay +
+      "-" +
+      endMonth +
+      "-" +
+      endYear +
+      " || Completion : " +
+      data.pp +
+      "%</span><br>"
+  );
+
+  // $("#tasks").append(
+  //   $(
+  //     '<li><form autocomplete="off" class="modifyTask"' +
+  //       data._id +
+  //       '" action="">' +
+  //       '<label for="' +
+  //       data._id +
+  //       '-tN">Nom : </label><input type="text" id="' +
+  //       data._id +
+  //       'tN" value="' +
+  //       data.name +
+  //       '" />' +
+  //       '<label for="' +
+  //       data._id +
+  //       '-tD">Description : </label><input type="text" id="' +
+  //       data._id +
+  //       '-tD" value="' +
+  //       data.desc +
+  //       '" />' +
+  //       '<label for="' +
+  //       data._id +
+  //       '-tS">Date de départ : </label><input type="date" id="' +
+  //       data._id +
+  //       '-tS" value="' +
+  //       startYear +
+  //       "-" +
+  //       startMonth +
+  //       "-" +
+  //       startDay +
+  //       '"/>' +
+  //       '<label for="' +
+  //       data._id +
+  //       '-tE">Date de fin : </label><input type="date" id="' +
+  //       data._id +
+  //       '-tE" value="' +
+  //       endYear +
+  //       "-" +
+  //       endMonth +
+  //       "-" +
+  //       endDay +
+  //       '"/>' +
+  //       '<label for="' +
+  //       data._id +
+  //       '-tPP">Pourcentage de complétion</label><input type="range" min="0" max="100" id="' +
+  //       data._id +
+  //       '-tPP" value="' +
+  //       data.pp +
+  //       '"/>' +
+  //       '<label for="' +
+  //       data._id +
+  //       '-tC">Couleur : </label><input type="color" id="' +
+  //       data._id +
+  //       '-tC" value="' +
+  //       data.color +
+  //       '"/>' +
+  //       '<input type="hidden" id="' +
+  //       data._id +
+  //       '" value="' +
+  //       data._id +
+  //       '">' +
+  //       "<button>Modifier</button>" +
+  //       "</form></li>"
+  //   )
+  // ); // FIN APPEND
 });
 
 // *******************DESCRIPTION******************
