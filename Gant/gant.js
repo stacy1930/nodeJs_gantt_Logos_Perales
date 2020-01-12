@@ -3,27 +3,20 @@ const socket = io();
 let title = "Aucun titre";
 let description = "Aucune description";
 let task = new Object();
+let taskToMod = new Object();
 
 socket.emit("connection", "a user connected");
 
 // *******************TITRE******************
 $("#addTitle").submit(function(e) {
-  e.preventDefault();
-  // if ($("#title").val() == "") {
-  //   title = "Aucun titre";
-  // } else {
-  //   title = $("#title").val();
-  // }
   socket.emit("title", $("#title").val());
-  // $("#title").val("");
+
   return false;
 });
 
 // *******************TASK******************
 
 $("#addTask").submit(function(e) {
-  e.preventDefault();
-
   switch ("") {
     case $("#tN").val():
       $("#tN").val() = "Aucun nom";
@@ -49,7 +42,6 @@ $("#addTask").submit(function(e) {
       $("#tC").val() = "Aucun nom";
       break;
   }
-
   task.name = $("#tN").val();
   task.desc = $("#tD").val();
   task.start = new Date($("#tS").val()).getTime() / 1000; // Conversion de la date en time stamp
@@ -64,20 +56,22 @@ $("#addTask").submit(function(e) {
   $("#tE").val("");
   $("#tPP").val("");
   $("#tC").val("");
-
-  return false;
 });
 
 $("#suppTask").submit(function(e) {
-  e.preventDefault();
   let idToDelete = $("input[name='suppTask']:checked").val();
   socket.emit("idToDelete", idToDelete);
 });
 
-$("modTask").submit(function(e) {
-  e.preventDefault();
-  let idToMod = $("input[name='modTask']:checked").val();
-  socket.emit("idToMod", idToMod);
+$("#modTask").submit(function(e) {
+  taskToMod.name = $("#mtN").val();
+  taskToMod.desc = $("#mtD").val();
+  taskToMod.start = new Date($("#mtS").val()).getTime() / 1000; // Conversion de la date en time stamp
+  taskToMod.end = new Date($("#mtE").val()).getTime() / 1000; // idem
+  taskToMod.pp = $("#mtPP").val();
+  taskToMod.color = $("#mtC").val();
+  taskToMod.idToMod = $("input[name='modTask']:checked").val();
+  socket.emit("taskToMod", taskToMod);
 });
 
 socket.on("task", data => {
@@ -145,77 +139,12 @@ socket.on("task", data => {
       data.pp +
       "%</span><br>"
   );
-
-  // $("#tasks").append(
-  //   $(
-  //     '<li><form autocomplete="off" class="modifyTask"' +
-  //       data._id +
-  //       '" action="">' +
-  //       '<label for="' +
-  //       data._id +
-  //       '-tN">Nom : </label><input type="text" id="' +
-  //       data._id +
-  //       'tN" value="' +
-  //       data.name +
-  //       '" />' +
-  //       '<label for="' +
-  //       data._id +
-  //       '-tD">Description : </label><input type="text" id="' +
-  //       data._id +
-  //       '-tD" value="' +
-  //       data.desc +
-  //       '" />' +
-  //       '<label for="' +
-  //       data._id +
-  //       '-tS">Date de départ : </label><input type="date" id="' +
-  //       data._id +
-  //       '-tS" value="' +
-  //       startYear +
-  //       "-" +
-  //       startMonth +
-  //       "-" +
-  //       startDay +
-  //       '"/>' +
-  //       '<label for="' +
-  //       data._id +
-  //       '-tE">Date de fin : </label><input type="date" id="' +
-  //       data._id +
-  //       '-tE" value="' +
-  //       endYear +
-  //       "-" +
-  //       endMonth +
-  //       "-" +
-  //       endDay +
-  //       '"/>' +
-  //       '<label for="' +
-  //       data._id +
-  //       '-tPP">Pourcentage de complétion</label><input type="range" min="0" max="100" id="' +
-  //       data._id +
-  //       '-tPP" value="' +
-  //       data.pp +
-  //       '"/>' +
-  //       '<label for="' +
-  //       data._id +
-  //       '-tC">Couleur : </label><input type="color" id="' +
-  //       data._id +
-  //       '-tC" value="' +
-  //       data.color +
-  //       '"/>' +
-  //       '<input type="hidden" id="' +
-  //       data._id +
-  //       '" value="' +
-  //       data._id +
-  //       '">' +
-  //       "<button>Modifier</button>" +
-  //       "</form></li>"
-  //   )
-  // ); // FIN APPEND
 });
 
 // *******************DESCRIPTION******************
 
 // $("#addDesc").submit(function(e) {
-//   e.preventDefault();
+//
 //   if ($("#description").val() == "") {
 //     description = "Aucune description";
 //   } else {
@@ -228,7 +157,7 @@ socket.on("task", data => {
 
 // *******************GROUPTASK******************
 // $("#addGroupTask").submit(function(e) {
-//   e.preventDefault();
+//
 //   if ($("#gtN").val() == "") {
 //     groupTaskName = "Aucun nom";
 //   } else {
@@ -258,7 +187,7 @@ socket.on("task", data => {
 
 // VERSION PROPRE
 // $("#addGroupTask").submit(function(e) {
-//   e.preventDefault();
+//
 
 //   switch ("") {
 //     case $("#gtN").val():
@@ -285,7 +214,7 @@ socket.on("task", data => {
 
 // *******************RESSOURCES******************
 // $("#addResource").submit(function(e) {
-//   e.preventDefault();
+//
 //   if ($("#rN").val() == "") {
 //     resourceName = "Aucun nom";
 //   } else {
@@ -306,7 +235,7 @@ socket.on("task", data => {
 // });
 
 // $("#addResource").submit(function(e) {
-//   e.preventDefault();
+//
 
 //   switch ("") {
 //     case $("#rN").val():
@@ -334,7 +263,7 @@ socket.on("task", data => {
 // *******************MILESTONES******************
 
 // $("#addMilestones").submit(function(e) {
-//   e.preventDefault();
+//
 //   if ($("#mN").val() == "") {
 //     $("#mN").val() = "Aucun nom";
 //   }
