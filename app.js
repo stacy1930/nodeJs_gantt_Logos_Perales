@@ -22,7 +22,7 @@ const jsonGant = {
         Sa: false,
         Su: false
       },
-      workingHours: { start: Date.now, end: Date.now },
+      workingHours: { start: Date.now(), end: Date.now() },
       task: [
         {
           id: 0,
@@ -175,6 +175,10 @@ io.on("connection", client => {
   // clientTest.emit("needHelp");
   //Ecouter la reponse de demande d'aide
   // clientTest.on("info", data => console.log(data));
+
+  // Envoyer le service au centrale
+  clientTest.emit("sendUpdate", jsonGant);
+  clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
   // clientTest.on("projectUpdated", data => console.log(data));
