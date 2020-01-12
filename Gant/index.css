@@ -56,3 +56,25 @@ fieldset {
   margin-top: 2%;
   margin-bottom: 2%;
 }
+
+label {
+  display: inline-block;
+}
+
+.radio {
+  background-color: #fff;
+  display: block;
+  margin: 10px 0;
+  position: relative;
+}
+
+input[type="radio"] {
+  position: absolute;
+}
+
+.selectRadio {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background-color: #fcf9f9ef;
+  padding: 1%;
+}
