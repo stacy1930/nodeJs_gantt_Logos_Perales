@@ -178,17 +178,17 @@ io.on("connection", client => {
 
   // Envoyer le service au centrale
   clientTest.emit("sendUpdate", jsonGant);
-  clientTest.on("errorOnProjectUpdate", data => console.log(data));
+  // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
-  // clientTest.on("projectUpdated", data => console.log(data));
+  clientTest.on("projectUpdated", data => console.log(data));
 
   //********ECOUTER ET VOIR SI UNE ERREUR A EU LIEU LORS DE LA MAJ******** */
   // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
-  clientTest.emit("getServices");
-  clientTest.on("servicies", data => console.log(data));
+  // clientTest.emit("getServices");
+  // clientTest.on("servicies", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
