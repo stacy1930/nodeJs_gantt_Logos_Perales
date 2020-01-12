@@ -141,7 +141,57 @@ socket.on("task", data => {
 });
 
 socket.on("recupGantt", data => {
-  $("#recupGantt").append(data.nameService);
+  $("#recupGantt").append(
+    '<div style="border: solid 1px black" id="' +
+      data.nameService.replace(/\s+/g, "") +
+      '"><h2>' +
+      data.nameService +
+      "</h2><ul id='" +
+      data.nameService.replace(/\s+/g, "") +
+      "-list'></ul></div>"
+  );
+  data.projects[0].task.forEach(element => {
+    let startListTS = element.start * 1000;
+    let startListDate = new Date(startListTS);
+    let startListDay = ("0" + startListDate.getDate()).slice(-2);
+    let startListMonth = ("0" + (startListDate.getMonth() + 1)).slice(-2);
+    let startListYear = startListDate.getFullYear();
+
+    let endListTS = element.end * 1000;
+    let endListDate = new Date(endListTS);
+    let endListDay = ("0" + endListDate.getDate()).slice(-2);
+    let endListMonth = ("0" + (endListDate.getMonth() + 1)).slice(-2);
+    let endListYear = endListDate.getFullYear();
+    $("#" + data.nameService.replace(/\s+/g, "") + "-list").append(
+      "<li class='task' style='color:" +
+        element.color +
+        "'>" +
+        "<span>Nom de la tache : " +
+        element.name +
+        " </span><ul>" +
+        "<li>Description : " +
+        element.desc +
+        " </li>" +
+        "<li>Date de début : " +
+        startListDay +
+        "-" +
+        startListMonth +
+        "-" +
+        startListYear +
+        " </li>" +
+        "<li>Date de fin : " +
+        endListDay +
+        "-" +
+        endListMonth +
+        "-" +
+        endListYear +
+        " </li>" +
+        "<li>Progression : " +
+        element.percentageProgress +
+        "%</li>" +
+        "</ul></li>"
+    );
+  });
 
   console.log(data);
 });
