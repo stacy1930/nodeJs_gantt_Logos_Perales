@@ -97,6 +97,20 @@ io.on("connection", client => {
   });
   // fin Envoie de tache en bdd
 
+  client.on("idToDelete", data => {
+    mongoClient.connect(url, function(err, db) {
+      if (err) console.log("SUPPRESSION");
+      let dbo = db.db("bddGantt");
+      console.log(data);
+      dbo
+        .collection("task")
+        .deleteOne({ _id: new mongo.ObjectID(data) }, function(err, obj) {
+          if (err) console.log("SUPPRESSION REQUETE");
+          console.log("element suprimé");
+        });
+    });
+  });
+
   mongoClient.connect(url, function(err, db) {
     if (err) console.log("ICI");
     let dbo = db.db("bddGantt");
