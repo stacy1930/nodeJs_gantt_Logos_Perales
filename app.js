@@ -71,15 +71,9 @@ mongoClient.connect(url, function(err, db) {
     if (err) throw err;
     console.log("Collection Created!");
   });
-
-  dbo.collection("gantt").find({}, function(err, result) {
-    if (err) throw err;
-    console.log("pas ok");
-  });
-
-  //  Connection
 });
 
+//  Connection
 io.on("connection", client => {
   client.on("connection", data => console.log(data)); // Un utilisateur visite la page
 
@@ -108,6 +102,30 @@ io.on("connection", client => {
           if (err) console.log("SUPPRESSION REQUETE");
           console.log("element suprimé");
         });
+    });
+  });
+
+  client.on("taskToMod", data => {
+    console.log(data);
+    mongoClient.connect(url, function(err, db) {
+      if (err) console.log("MODIFICATION");
+      let dbo = db.db("bddGantt");
+      let query = { _id: new mongo.ObjectID(data.idToMod) };
+      let newValues = {
+        $set: {
+          name: data.name,
+          desc: data.desc,
+          start: data.start,
+          end: data.start,
+          pp: data.pp,
+          color: data.color
+        }
+      };
+      console.log(data);
+      dbo.collection("task").updateOne(query, newValues, function(err, obj) {
+        if (err) console.log("MODIFICATION REQUETE");
+        console.log("element modifieé");
+      });
     });
   });
 

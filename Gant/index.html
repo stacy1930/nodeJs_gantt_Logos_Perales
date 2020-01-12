@@ -51,12 +51,21 @@
         </fieldset>
       </form>
 
-      <form id="modTask">
+      <form id="modTask" autocomplete="off">
         <fieldset id="modField">
           <legend>Modifier une tache</legend>
+          <label for="mtN">Nom : </label><input type="text" id="mtN" />
+          <label for="mtD">Description : </label><input type="text" id="mtD" />
+          <label for="mtS">Date de départ : </label
+          ><input type="date" id="mtS" /> <label for="mtE">Date de fin : </label
+          ><input type="date" id="mtE" />
+          <label for="mtPP">Pourcentage de complétion</label
+          ><input type="range" min="0" max="100" id="mtPP" />
+          <label for="mtC">Couleur : </label><input type="color" id="mtC" />
           <button>Modifier</button>
         </fieldset>
       </form>
+
       <!-- <form autocomplete="off" id="addDesc">
       <label>Description : </label>
       <textarea id="description" cols="30" rows="10"></textarea>
