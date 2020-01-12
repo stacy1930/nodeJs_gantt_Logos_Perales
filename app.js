@@ -54,8 +54,6 @@ const jsonGant = {
   ]
 };
 
-// const Gant = require(path.join(__dirname, "Gant", "gant.js"));
-
 app.use(express.static(path.join(__dirname, "Gant")));
 
 // Connexion a la bdd
@@ -140,26 +138,6 @@ io.on("connection", client => {
       });
   });
 
-  //SUPPRESSION D'UNE TACHE
-  // mongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   let dbo = db.db("bddGantt");
-  //   db.collection("task").deleteOne(data, function(err, res) {
-  //     if (err) throw err;
-  //     console.log("Document supprimé !");
-  //   });
-  // });
-
-  //UPDATE D'UNE TACHE
-  // mongoClient.connect(url, function(err, db) {
-  //   if (err) throw err;
-  //   let dbo = db.db("bddGantt");
-  //   dbo.collection("task").updateOne(data, newValue, function(err, res) {
-  //     if (err) throw err;
-  //     console.log("Document modifié !");
-  //   });
-  // });
-
   //************************************************************************************************************* */
   //***************************** */ CONNEXION AU SERVEUR CENTRAL *********************************************** */
   //************************************************************************************************************* */
@@ -171,9 +149,9 @@ io.on("connection", client => {
 
   console.log("server central connected");
   //********DEMANDE D'AIDE******** */
-  //Pour demander de l'aide
+  // Pour demander de l'aide
   // clientTest.emit("needHelp");
-  //Ecouter la reponse de demande d'aide
+  // Ecouter la reponse de demande d'aide
   // clientTest.on("info", data => console.log(data));
 
   // Envoyer le service au centrale
