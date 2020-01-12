@@ -160,20 +160,6 @@ io.on("connection", client => {
           percentageProgress: element.projects[0].task[i].percentageProgress,
           color: element.projects[0].task[i].color
         };
-        client.emit(
-          "taskTestRecup",
-          element.projects[0].task[i].name +
-            " : " +
-            element.projects[0].task[i].desc +
-            ", " +
-            element.projects[0].task[i].start +
-            " / " +
-            element.projects[0].task[i].end +
-            ", " +
-            element.projects[0].task[i].percentageProgress +
-            ", " +
-            element.projects[0].task[i].color
-        );
       }
     });
   });
