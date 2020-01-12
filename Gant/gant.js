@@ -75,7 +75,6 @@ $("#modTask").submit(function(e) {
 });
 
 socket.on("task", data => {
-  console.log(data);
   let startTS = data.start * 1000;
   let startDate = new Date(startTS);
   let startDay = ("0" + startDate.getDate()).slice(-2);
@@ -139,4 +138,10 @@ socket.on("task", data => {
       data.pp +
       "%</span><br>"
   );
+});
+
+socket.on("recupGantt", data => {
+  $("#recupGantt").append(data.nameService);
+
+  console.log(data);
 });

@@ -149,20 +149,21 @@ io.on("connection", client => {
   //   console.log(data);
   // });
 
-  clientTest.on("projectUpdated", dataTest => {
-    dataTest.forEach(element => {
-      for (let i = 0; i < element.projects[0].task.length; i++) {
-        let recupGantt = {
-          name: element.projects[0].task[i].name,
-          desc: element.projects[0].task[i].desc,
-          start: element.projects[0].task[i].start,
-          end: element.projects[0].task[i].end,
-          percentageProgress: element.projects[0].task[i].percentageProgress,
-          color: element.projects[0].task[i].color
-        };
-      }
-    });
-  });
+  // clientTest.on("projectUpdated", dataTest => {
+  //   dataTest.forEach(element => {
+  //     for (let i = 0; i < element.projects[0].task.length; i++) {
+  //       let recupGantt = {
+  //         name: element.projects[0].task[i].name,
+  //         desc: element.projects[0].task[i].desc,
+  //         start: element.projects[0].task[i].start,
+  //         end: element.projects[0].task[i].end,
+  //         percentageProgress: element.projects[0].task[i].percentageProgress,
+  //         color: element.projects[0].task[i].color
+  //       };
+  //       clientTest.emit("recupGantt", recupGantt);
+  //     }
+  //   });
+  // });
 
   //********ECOUTER ET VOIR SI UNE ERREUR A EU LIEU LORS DE LA MAJ******** */
   // clientTest.on("errorOnProjectUpdate", data => console.log(data));
@@ -172,9 +173,14 @@ io.on("connection", client => {
   // clientTest.on("servicies", data => console.log(data[0].projects[0].task));
 
   clientTest.emit("getServices");
-  clientTest.on("servicies", data => console.log(data));
+  clientTest.on("servicies", data => {
+    data.forEach(element => {
+      console.log(element);
+      client.emit("recupGantt", element);
+    });
+  });
 
-  clientTest.on("servicies", data => console.log(data[0].projects[0].task));
+  // clientTest.on("servicies", data => console.log(data[0].projects[0].task));
   //clientTest.on("servicies", data => console.log(data));
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
