@@ -23,30 +23,7 @@ const jsonGant = {
         Su: false
       },
       workingHours: { start: Date.now(), end: Date.now() },
-      task: [
-        {
-          id: 0,
-          name: "tache 1",
-          desc: "toto",
-          start: 1491680626329,
-          end: 1491684607029,
-          percentageProgress: 50,
-          color: "#fc0202",
-          linkedTask: [],
-          ressources: []
-        },
-        {
-          id: 1,
-          name: "tache 2",
-          desc: "toto",
-          start: 1491680626327,
-          end: 1491684607022,
-          percentageProgress: 10,
-          color: "#fc0350",
-          linkedTask: [],
-          ressources: []
-        }
-      ],
+      task: [],
       groupTask: [{ name: "optional", start: Date.now(), end: Date.now() }],
       resources: [{ name: "Jérémy", cost: 500, type: "humain" }],
       milestones: [{ name: "jalon °1", date: Date.now() }]
@@ -88,7 +65,6 @@ io.on("connection", client => {
     });
   });
   // fin Envoie de tache en bdd
-
   client.on("idToDelete", data => {
     mongoClient.connect(url, function(err, db) {
       if (err) console.log("SUPPRESSION");
@@ -102,7 +78,6 @@ io.on("connection", client => {
         });
     });
   });
-
   client.on("taskToMod", data => {
     console.log(data);
     mongoClient.connect(url, function(err, db) {
@@ -126,27 +101,37 @@ io.on("connection", client => {
       });
     });
   });
-
   mongoClient.connect(url, function(err, db) {
     if (err) console.log("ICI");
     let dbo = db.db("bddGantt");
+    let id = 0;
     dbo
       .collection("task")
       .find({})
       .forEach(function(task) {
         client.emit("task", task);
+
+        jsonGant.projects[0].task.push({
+          id: id,
+          name: task.name,
+          desc: task.desc,
+          start: task.start,
+          end: task.end,
+          percentageProgress: parseInt(task.pp, 10),
+          color: task.color,
+          linkedTask: [],
+          ressources: []
+        });
+        id++;
       });
   });
-
   //************************************************************************************************************* */
   //***************************** */ CONNEXION AU SERVEUR CENTRAL *********************************************** */
   //************************************************************************************************************* */
-
   const socketClient = require("socket.io-client");
   let clientTest = socketClient.connect("http://51.15.137.122:18000/", {
     reconnect: true
   });
-
   console.log("server central connected");
   //********DEMANDE D'AIDE******** */
   // Pour demander de l'aide
@@ -193,6 +178,8 @@ io.on("connection", client => {
   clientTest.emit("getServices");
   clientTest.on("servicies", data => console.log(data));
 
+  //clientTest.on("servicies", data => console.log(data[2].projects[0].task));
+  //clientTest.on("servicies", data => console.log(data));
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
 });
