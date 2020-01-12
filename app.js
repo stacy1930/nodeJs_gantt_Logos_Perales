@@ -174,7 +174,7 @@ io.on("connection", client => {
   clientTest.emit("getServices");
   clientTest.on("servicies", data => console.log(data));
 
-  //clientTest.on("servicies", data => console.log(data[2].projects[0].task));
+  clientTest.on("servicies", data => console.log(data[0].projects[0].task));
   //clientTest.on("servicies", data => console.log(data));
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
