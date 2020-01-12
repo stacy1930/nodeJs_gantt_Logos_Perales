@@ -159,14 +159,39 @@ io.on("connection", client => {
   // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
-  clientTest.on("projectUpdated", data => console.log(data));
+  // clientTest.on("projectUpdated", data => console.log(data));
+  // clientTest.on("projectUpdated", data => {
+  //   console.log(data);
+  // });
+
+  clientTest.on("projectUpdated", dataTest => {
+    dataTest.forEach(element => {
+      for (let i = 0; i < element.projects[0].task.length; i++) {
+        io.emit(
+          "taskTestRecup",
+          element.projects[0].task[i].name +
+            " : " +
+            element.projects[0].task[i].desc +
+            ", " +
+            element.projects[0].task[i].start +
+            " / " +
+            element.projects[0].task[i].end +
+            ", " +
+            element.projects[0].task[i].percentageProgress
+        );
+      }
+    });
+  });
 
   //********ECOUTER ET VOIR SI UNE ERREUR A EU LIEU LORS DE LA MAJ******** */
   // clientTest.on("errorOnProjectUpdate", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
+  // clientTest.emit("getServices");
+  // clientTest.on("servicies", data => console.log(data[0].projects[0].task));
+
   clientTest.emit("getServices");
-  clientTest.on("servicies", data => console.log(data[0].projects[0].task));
+  clientTest.on("servicies", data => console.log(data));
 
   //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
   // clientTest.emit("deleteService");
