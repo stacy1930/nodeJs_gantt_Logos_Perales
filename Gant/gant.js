@@ -95,7 +95,7 @@ socket.on("task", data => {
   let endYear = endDate.getFullYear();
 
   $("#suppField").prepend(
-    '<input type="radio" name="modTask" value="' +
+    '<input type="radio" name="suppTask" value="' +
       data._id +
       '"><span style="color:' +
       data.color +
@@ -121,7 +121,7 @@ socket.on("task", data => {
   );
 
   $("#modField").prepend(
-    '<input type="radio" name="suppTask" value="' +
+    '<input type="radio" name="modTask" value="' +
       data._id +
       '"><span style="color:' +
       data.color +
