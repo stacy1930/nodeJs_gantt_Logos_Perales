@@ -5,8 +5,6 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <!-- POUR REALISER UN GANTT-->
-    <script src="frappe-gantt.min.js"></script>
-    <link rel="stylesheet" href="frappe-gantt.css" />
 
     <link rel="stylesheet" href="index.css" />
 
@@ -28,43 +26,44 @@
         Modifier
       </button>
     </form> -->
+    <div class="container">
+      <form autocomplete="off" id="addTask">
+        <fieldset>
+          <legend>Task</legend>
+          <label for="tN">Nom : </label><input type="text" id="tN" />
+          <label for="tD">Description : </label><input type="text" id="tD" />
+          <label for="tS">Date de départ : </label
+          ><input type="date" id="tS" /> <label for="tE">Date de fin : </label
+          ><input type="date" id="tE" />
+          <label for="tPP">Pourcentage de complétion</label
+          ><input type="range" min="0" max="100" id="tPP" />
+          <label for="tC">Couleur : </label><input type="color" id="tC" />
+          <button>Ajouter</button>
+        </fieldset>
+      </form>
 
-    <form autocomplete="off" id="addTask">
-      <fieldset>
-        <legend>Task</legend>
-        <label for="tN">Nom : </label><input type="text" id="tN" />
-        <label for="tD">Description : </label><input type="text" id="tD" />
-        <label for="tS">Date de départ : </label><input type="date" id="tS" />
-        <label for="tE">Date de fin : </label><input type="date" id="tE" />
-        <label for="tPP">Pourcentage de complétion</label
-        ><input type="range" min="0" max="100" id="tPP" />
-        <label for="tC">Couleur : </label><input type="color" id="tC" />
-        <button>Ajouter</button>
-      </fieldset>
-    </form>
+      <form id="tasks"></form>
 
-    <form id="tasks"></form>
+      <form id="suppTask">
+        <fieldset id="suppField">
+          <legend>Suprrimer une tache</legend>
+          <button>suprimmer</button>
+        </fieldset>
+      </form>
 
-    <form id="suppTask">
-      <fieldset id="suppField">
-        <legend>Suprrimer une tache</legend>
-        <button>suprimmer</button>
-      </fieldset>
-    </form>
-
-    <form id="modTask">
-      <fieldset id="modField">
-        <legend>Modifier une tache</legend>
-        <button>Modifier</button>
-      </fieldset>
-    </form>
-    <!-- <form autocomplete="off" id="addDesc">
+      <form id="modTask">
+        <fieldset id="modField">
+          <legend>Modifier une tache</legend>
+          <button>Modifier</button>
+        </fieldset>
+      </form>
+      <!-- <form autocomplete="off" id="addDesc">
       <label>Description : </label>
       <textarea id="description" cols="30" rows="10"></textarea>
       <button>Modifier</button>
     </form> -->
 
-    <!-- <form autocomplete="off" id="addDaysOff">
+      <!-- <form autocomplete="off" id="addDaysOff">
       <fieldset>
         <legend>Work Days</legend>
         <input type="checkbox" name="Lundi" id="dL" />
@@ -78,7 +77,7 @@
       </fieldset>
     </form> -->
 
-    <!-- <form autocomplete="off" id="addWorkingHours">
+      <!-- <form autocomplete="off" id="addWorkingHours">
       <fieldset>
         <legend>Working hours</legend>
         <label>Début</label><input type="time" name="start" id="whS" />
@@ -87,7 +86,7 @@
       </fieldset>
     </form> -->
 
-    <!-- <form autocomplete="off" id="addMilestones">
+      <!-- <form autocomplete="off" id="addMilestones">
       <fieldset>
         <legend>Jalon</legend>
         <label for="mN">Nom : </label><input id="mN" type="text" />
@@ -113,6 +112,7 @@
         <button>Ajouter</button>
       </fieldset>
     </form> -->
+    </div>
   </body>
   <script src="./gant.js"></script>
 
