@@ -65,6 +65,8 @@ io.on("connection", client => {
     });
   });
   // fin Envoie de tache en bdd
+
+  // Suppression en BDD
   client.on("idToDelete", data => {
     mongoClient.connect(url, function(err, db) {
       if (err) console.log("SUPPRESSION");
@@ -73,26 +75,30 @@ io.on("connection", client => {
       dbo
         .collection("task")
         .deleteOne({ _id: new mongo.ObjectID(data) }, function(err, obj) {
+          //on doit convertir notre id en ObjectID qui sera reconnu et accepté par mongo
           if (err) console.log("SUPPRESSION REQUETE");
           console.log("element suprimé");
         });
     });
   });
+  // Fin Suppression
+
+  // Modification
   client.on("taskToMod", data => {
     console.log(data);
     mongoClient.connect(url, function(err, db) {
       if (err) console.log("MODIFICATION");
       let dbo = db.db("bddGantt");
-      let query = { _id: new mongo.ObjectID(data.idToMod) };
+      let query = { _id: new mongo.ObjectID(data.idToMod) }; //on fait notre requete sur l'id du document, qui doit etre converti enObjectID
       let newValues = {
         $set: {
           name: data.name,
           desc: data.desc,
           start: data.start,
-          end: data.start,
+          end: data.end,
           pp: data.pp,
           color: data.color
-        }
+        } // on prépare les valeurs à ajouter
       };
       console.log(data);
       dbo.collection("task").updateOne(query, newValues, function(err, obj) {
@@ -101,6 +107,9 @@ io.on("connection", client => {
       });
     });
   });
+  // Fin de modification
+
+  // Insert des taches dans notre objet qui sera envoyé plus tard
   mongoClient.connect(url, function(err, db) {
     if (err) console.log("ICI");
     let dbo = db.db("bddGantt");
@@ -125,6 +134,8 @@ io.on("connection", client => {
         id++;
       });
   });
+  // Fin insert
+
   //************************************************************************************************************* */
   //***************************** */ CONNEXION AU SERVEUR CENTRAL *********************************************** */
   //************************************************************************************************************* */
@@ -133,44 +144,10 @@ io.on("connection", client => {
     reconnect: true
   });
   console.log("server central connected");
-  //********DEMANDE D'AIDE******** */
-  // Pour demander de l'aide
-  // clientTest.emit("needHelp");
-  // Ecouter la reponse de demande d'aide
-  // clientTest.on("info", data => console.log(data));
 
   // Envoyer le service au centrale
   clientTest.emit("sendUpdate", jsonGant);
   // clientTest.on("errorOnProjectUpdate", data => console.log(data));
-
-  //********RECEVOIR L'ENSEMBLE DE TOUS LES PROJETS******** */
-  // clientTest.on("projectUpdated", data => console.log(data));
-  // clientTest.on("projectUpdated", data => {
-  //   console.log(data);
-  // });
-
-  // clientTest.on("projectUpdated", dataTest => {
-  //   dataTest.forEach(element => {
-  //     for (let i = 0; i < element.projects[0].task.length; i++) {
-  //       let recupGantt = {
-  //         name: element.projects[0].task[i].name,
-  //         desc: element.projects[0].task[i].desc,
-  //         start: element.projects[0].task[i].start,
-  //         end: element.projects[0].task[i].end,
-  //         percentageProgress: element.projects[0].task[i].percentageProgress,
-  //         color: element.projects[0].task[i].color
-  //       };
-  //       clientTest.emit("recupGantt", recupGantt);
-  //     }
-  //   });
-  // });
-
-  //********ECOUTER ET VOIR SI UNE ERREUR A EU LIEU LORS DE LA MAJ******** */
-  // clientTest.on("errorOnProjectUpdate", data => console.log(data));
-
-  //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
-  // clientTest.emit("getServices");
-  // clientTest.on("servicies", data => console.log(data[0].projects[0].task));
 
   clientTest.emit("getServices");
   clientTest.on("servicies", data => {
@@ -179,11 +156,6 @@ io.on("connection", client => {
       client.emit("recupGantt", element);
     });
   });
-
-  // clientTest.on("servicies", data => console.log(data[0].projects[0].task));
-  //clientTest.on("servicies", data => console.log(data));
-  //********DEMANDER AU CENTRALE DE RENVOYER LA LISTE DES SERVICES******** */
-  // clientTest.emit("deleteService");
 });
 
 http.listen(3001);

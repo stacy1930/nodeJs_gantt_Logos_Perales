@@ -16,6 +16,7 @@ $("#addTitle").submit(function(e) {
 
 // *******************TASK******************
 
+//Ajout de tache
 $("#addTask").submit(function(e) {
   switch ("") {
     case $("#tN").val():
@@ -42,6 +43,7 @@ $("#addTask").submit(function(e) {
       $("#tC").val() = "Aucun nom";
       break;
   }
+
   task.name = $("#tN").val();
   task.desc = $("#tD").val();
   task.start = new Date($("#tS").val()).getTime() / 1000; // Conversion de la date en time stamp
@@ -57,12 +59,16 @@ $("#addTask").submit(function(e) {
   $("#tPP").val("");
   $("#tC").val("");
 });
+//Fin ajout
 
+// SUppression de tache
 $("#suppTask").submit(function(e) {
   let idToDelete = $("input[name='suppTask']:checked").val();
   socket.emit("idToDelete", idToDelete);
 });
+// Fin suppression
 
+//Modificaction de tache
 $("#modTask").submit(function(e) {
   taskToMod.name = $("#mtN").val();
   taskToMod.desc = $("#mtD").val();
@@ -73,7 +79,8 @@ $("#modTask").submit(function(e) {
   taskToMod.idToMod = $("input[name='modTask']:checked").val();
   socket.emit("taskToMod", taskToMod);
 });
-
+//Fin de modif
+// Ajout des taches aux formulaires de suppression et modification
 socket.on("task", data => {
   let startTS = data.start * 1000;
   let startDate = new Date(startTS);
@@ -139,7 +146,9 @@ socket.on("task", data => {
       "%</span><br></div>"
   );
 });
+// Fin ajout
 
+// Afficher les taches depuis le serveur central
 socket.on("recupGantt", data => {
   $("#recupGantt").append(
     '<div style="border: solid 4px rgba(122, 200, 212, 0.5); border-radius: 10px; box-shadow: 8px 8px 0px #aaa; width:79%; margin:auto; margin-bottom:2%;" id="' +
@@ -195,3 +204,4 @@ socket.on("recupGantt", data => {
 
   console.log(data);
 });
+// Affichage
