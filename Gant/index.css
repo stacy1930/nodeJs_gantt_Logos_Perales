@@ -70,6 +70,7 @@ label {
 
 input[type="radio"] {
   position: absolute;
+  margin-left: 20%;
 }
 
 .selectRadio {
