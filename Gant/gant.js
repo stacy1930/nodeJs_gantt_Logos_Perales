@@ -142,9 +142,9 @@ socket.on("task", data => {
 
 socket.on("recupGantt", data => {
   $("#recupGantt").append(
-    '<div style="border: solid 1px black" id="' +
+    '<div style="border: solid 4px rgba(122, 200, 212, 0.5); border-radius: 10px; box-shadow: 8px 8px 0px #aaa; width:79%; margin:auto; margin-bottom:2%;" id="' +
       data.nameService.replace(/\s+/g, "") +
-      '"><h2>' +
+      '"><h2 style="text-align:center;">' +
       data.nameService +
       "</h2><ul id='" +
       data.nameService.replace(/\s+/g, "") +

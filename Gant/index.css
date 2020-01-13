@@ -78,3 +78,20 @@ input[type="radio"] {
   background-color: #fcf9f9ef;
   padding: 1%;
 }
+
+ul {
+  /* list-style: none; */
+  margin-left: 2%;
+}
+
+/* .task {
+  padding-bottom: 2%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  text-align: justify;
+} */
+
+li {
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
