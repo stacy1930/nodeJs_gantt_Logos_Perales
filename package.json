@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "frappe-gantt": "^0.3.0",
     "gantt": "^3.0.11",
+    "gantt-elastic": "^1.0.10",
     "jquery": "^3.4.1",
     "mongodb": "^3.4.1",
     "mongoose": "^5.8.5",
